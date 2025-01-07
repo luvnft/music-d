@@ -13,7 +13,7 @@ const LaunchPage = (props: any) => {
       <div className="relative grid min-h-screen grid-cols-1 md:grid-cols-2">
         <div className="flex items-center justify-center">
           <div className="space-y-4">
-            <h3>LUV NFT/h3>
+            <h3>LUV NFT</h3>
             <h1 className="pb-4">
               Vibes<br></br> Player
             </h1>

@@ -57,6 +57,8 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
 
   useEffect(() => {
     if (!metadata?.name) return;
+  
+    // Update values based on metadata
     setValue("collectionName", metadata.name);
     setValue("symbol", metadata.symbol || metadata.artist);
     setValue("editionSize", metadata.editionSize || 11);
@@ -66,7 +68,7 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
     setValue("royalty", metadata.royalty);
     setValue("maxTokenPurchase", metadata.maxTokenPurchase);
     setValue("description", metadata.description);
-  }, [metadata]);
+  }, [metadata, setValue]); // Added setValue as a dependency  
 
   const deployFunction = async () => {
     try {
@@ -202,7 +204,7 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                   required: "Name your collection",
                 })}
               />
-              <p className="text-red-600 text-sm">
+              <p className="text-sm text-red-600">
                 <ErrorMessage errors={errors} name="collectionName" />
               </p>
             </div>
@@ -215,7 +217,7 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                   required: "Give your collection a symbol",
                 })}
               />
-              <p className="text-red-600 text-sm">
+              <p className="text-sm text-red-600">
                 <ErrorMessage errors={errors} name="symbol" />
               </p>
             </div>
@@ -228,13 +230,13 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                   required: "Please enter a description.",
                 })}
               />
-              <p className="text-red-600 text-sm">
+              <p className="text-sm text-red-600">
                 <ErrorMessage errors={errors} name="description" />
               </p>
             </div>
 
             <div>
-              <div className="pb-2 flex items-center">
+              <div className="flex items-center pb-2">
                 <label>Edition Size</label>
                 <InfoField
                   isHovering={isHovering1}
@@ -246,7 +248,7 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                   }
                 />
               </div>
-              <div className="flex items-center w-full relative gap-4">
+              <div className="relative flex items-center w-full gap-4">
                 <select
                   onChange={(e) => handleChange(e)}
                   className="px-3 py-2 rounded-full border border-[#E4E3E7] cursor-pointer text-black"
@@ -264,7 +266,7 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                   <input className={inputClass} {...register("editionSize")} />
                 )}
 
-                <p className="text-sm absolute right-3">Editions</p>
+                <p className="absolute text-sm right-3">Editions</p>
               </div>
               <p className="error-text">
                 <ErrorMessage errors={errors} name="editionSize" />
@@ -272,7 +274,7 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
             </div>
 
             <div>
-              <div className="pb-2 flex gap-1 items-center">
+              <div className="flex items-center gap-1 pb-2">
                 <p className="font-header">Purchase Count (Optional)</p>
                 <InfoField
                   isHovering={isHovering2}
@@ -296,14 +298,14 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                     "Must set price for token.  Please set to 0 if you wish for your NFTs to be free.",
                 })}
               />
-              <p className="text-red-600 text-sm">
+              <p className="text-sm text-red-600">
                 <ErrorMessage errors={errors} name="tokenPrice" />
               </p>
             </div>
 
             {/* Frosty contracts support EIP 2981 */}
             <div>
-              <div className="pb-2 flex gap-1">
+              <div className="flex gap-1 pb-2">
                 <p>Creator Royalty (Optional)</p>
                 <InfoField
                   isHovering={isHovering3}
@@ -315,9 +317,9 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
                   }
                 />
               </div>
-              <div className="flex items-center w-fit text-black relative">
+              <div className="relative flex items-center text-black w-fit">
                 <input className={inputClass} {...register("royalty")} />
-                <p className="text-sm absolute right-3">%</p>
+                <p className="absolute text-sm right-3">%</p>
               </div>
             </div>
 
@@ -336,13 +338,13 @@ const DeployContract = ({ metadata, setMetadata, setDeploymentStep }: any) => {
           </div>
 
           <button
-            className="pt-8 flex gap-4 items-center"
+            className="flex items-center gap-4 pt-8"
             type="button"
             onClick={() => deployFunction()}
           >
             <input
               type="submit"
-              className="cursor-pointer bg-black text-white px-8 py-2 rounded-full hover:bg-opacity-80"
+              className="px-8 py-2 text-white bg-black rounded-full cursor-pointer hover:bg-opacity-80"
             />
           </button>
         </form>
