@@ -72,7 +72,7 @@ const CreatePlayerButton = ({
       if (ipfsResponse?.error) throw ipfsResponse?.error;
 
       const baseAnimationUrl =
-        "https://fleek.ipfs.io/ipfs/bafybeib4y7cv7qwtpxub77zpogpgjc6k6bu3vax2t34hjkvspgpdkta4ja?playlist-url=";
+        "https://tontv.mypinata.cloud/ipfs/bafybeib4y7cv7qwtpxub77zpogpgjc6k6bu3vax2t34hjkvspgpdkta4ja?playlist-url=";
       const playlistUrl = `https://nftstorage.link/ipfs/${ipfsResponse}`;
       setDeploymentStep(0);
 
